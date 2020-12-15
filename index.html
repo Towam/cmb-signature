@@ -498,7 +498,7 @@
                     return this.countrycodeSelected.code + this.phone.replace(/\s+/g, '');
                 },
 
-                tableWidth: function() {
+                calcTableWidth: function() {
                     return (p_width) => Math.ceil(this.signatureWidth + p_width);
                 },
 
@@ -513,15 +513,17 @@
                         imgWidth = parseInt(this.signatureImageWidth);
                         imgHeight = parseInt(this.signatureImageHeight);
                         imgPath = this.imgBasePath + `/` + this.signatureImage;
-                        tableWidth = this.tableWidth(this.signatureWidthOverride/4*3)
+                        tableWidth = this.calcTableWidth(this.signatureWidthOverride/4*3)
                         //customSignatureBlock.classList.remove('disabled');
                     } else {
                         imgWidth = this.brandSelected.width/3*2;
                         imgHeight = this.brandSelected.height/3*2;
                         imgPath = this.imgBasePath + `` + this.brandSelected.url;
-                        tabelWidth = this.tableWidth(this.brandSelected.width/4*3)
+                        tableWidth = this.calcTableWidth(this.brandSelected.width/4*3)
                         //customSignatureBlock.classList.add('disabled');
                     }
+
+                    console.info(tableWidth);
 
                     return `<table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="` + tableWidth + `" style="width:` + tableWidth  + `px;">
                             <tr>
@@ -563,7 +565,7 @@
                 }
             },
             methods: {
-                
+
                 async copySignature() {
 
                     let str = this.strSignature;
