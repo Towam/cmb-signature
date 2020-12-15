@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8">
+    <title>Handtekening</title>
+    <meta name="description" content="Genereer je e-mailhandtekening.">
+    <meta name="author" content="UXMen">
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .disabled{
+            opacity: .3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-sm">
+                    <form v-on:submit.prevent="copySignature()">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="mb-3">Enter your information</h3>
+
+                                <div class="form-group">
+                                    <label for="logo">Logo</label>
+                                    <select class="form-control" id="logo" v-model="brandSelected">
+                                        <option v-for="brand in brands" :value="brand">
+                                            {{brand.label}}
+                                        </option>
+                                    </select>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label for="naam">Name</label>
+                                    <input type="text" name="naam" class="form-control" id="naam" v-model="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="functie">Function <small>(optional)</small></label>
+                                    <input type="text" name="functie" class="form-control" id="functie" v-model="job">
+                                </div>
+    
+                                <div class="form-group">
+                                    <label for="email">Professional E-mail Adress <small>(optional)</small></label>
+                                    <input type="text" name="email" class="form-control" id="email" v-model="proEmail">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">General E-mail Adress <small>(optional)</small></label>
+                                    <input type="text" name="email" class="form-control" id="email" v-model="email">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="landcode">Landcode</label>
+                                    <select class="form-control" id="landcode" v-model="countrycodeSelected">
+                                        <option v-for="countrycode in countrycodes" :value="countrycode">
+                                            {{countrycode.label}} ({{countrycode.code}})
+                                        </option>
+                                    </select>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label for="mobiel">Mobile <small>(optional)</small></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">{{countrycodeSelected.code}}</span>
+                                        </div>
+                                        <input type="text" name="mobiel" class="form-control" id="mobiel" v-model="mobile">
+                                    </div>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label for="telefoon">Phone <small>(optional)</small></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">{{countrycodeSelected.code}}</span>
+                                        </div>
+                                        <input type="text" name="telefoon" class="form-control" id="telefoon" v-model="phone">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="website-url">Website URL</label>
+                                    <div class="input-group">
+                                        <input type="text" name="mobiel" class="form-control" id="website-url" v-model="brandSelected.website.url">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="website-label">Website Label</label>
+                                    <div class="input-group">
+                                        <input type="text" name="mobiel" class="form-control" id="website-label" v-model="brandSelected.website.label">
+                                    </div>
+                                </div>
+
+                                <!--
+                                
+                            
+                                <hr class="mt-4 mb-4" />
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox mb-4">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1" v-model='customSignature'>
+                                        <label class="custom-control-label" for="customCheck1">Custom image</label>
+                                    </div>
+                                    <div class="custom-sig disabled">
+                                        <label for="signature-image-path">Signature image</label>
+                                        <div class="input-group">
+                                            <input type="text" name="signature-path" class="form-control" id="signature-image-path" v-model="signatureImage">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label for="signature-image-width">Signature image width</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="signature-width" class="form-control" id="signature-image-width" v-model="signatureImageWidth">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="wsignature-image-height">Signature image height</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="signature-height" class="form-control" id="signature-image-height" v-model="signatureImageHeight">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label for="wsignature-image-height">Signature width</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="signature-height" class="form-control" id="signature-image-height" v-model="signatureWidthOverride">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                -->
+
+                                <button class="btn btn-primary">Copy and generate signature</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-sm">
+                    <h4 class="mb-4">Signature</h4>
+                    <div class="mt-5" id="signature" v-html="strSignature" style="display:none;"></div>
+
+                    <iframe id="preview" class="card" style="width:600px; height: 400px; margin-bottom: 1rem;"></iframe>
+                    <ol>
+                        <li>Click on the signature</li>
+                        <li><strong>Select all</strong> (CTRL/CMD+A) and <strong>copy</strong> (CTRL/CMD+C)</li>
+                        <li>Then <strong>paste</strong> CTRL/CMD+V the signature in outlook.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>        
+        new Vue({
+            el: '#app',
+            data: {
+                brands: [
+                    {
+                        url: '/cmb2',
+                        width: 240,
+                        height: 204,
+                        brandLabel: 'CMB',
+                        label: 'CMB',
+                        website: {
+                            url: 'https://www.cmb.be/',
+                            label: 'www.cmb.be'
+                        },
+                        borderColor: '#ed1c24'
+                    },
+                    {
+                        url: '/mca2',
+                        width: 400,
+                        height: 204,
+                        brandLabel: 'MCA',
+                        label: 'MCA',
+                        website: {
+                            url: 'https://www.maritimecampusantwerp.com',
+                            label: 'www.maritimecampusantwerp.com'
+                        },
+                        borderColor: '#8ac7cb'
+                    },
+                    {
+                        url: '/cmb%20tech',
+                        width: 242,
+                        height: 204,
+                        brandLabel: 'CMB.TECH',
+                        label: 'CMB.TECH',
+                        website: {
+                            url: 'https://www.cmb.tech',
+                            label: 'www.cmb.tech'
+                        },
+                    },
+                    {
+                        url: '/delphis',
+                        width: 242,
+                        height: 204,
+                        brandLabel: 'Delphis',
+                        label: 'Delphis',
+                        website: {
+                            url: 'https://www.cmb.be/',
+                            label: 'www.cmb.be'
+                        }
+                    },
+                    {
+                        url: '/bocimar',
+                        width: 242,
+                        height: 204,
+                        brandLabel: 'Bocimar',
+                        label: 'Bocimar', 
+                        website: {
+                            url: 'https://www.cmb.be/',
+                            label: 'www.cmb.be'
+                        }
+                    },
+                    {
+                        url: '/bochem',
+                        width: 242,
+                        height: 204,
+                        brandLabel: 'Bochem',
+                        label: 'Bochem', 
+                        website: {
+                            url: 'https://www.cmb.be/',
+                            label: 'www.cmb.be'
+                        }
+                    },
+                    {
+                        url: '/Christmas',
+                        width: 287,
+                        height: 204,
+                        brandLabel: 'CMB',
+                        label: 'CMB Christmas', 
+                        website: {
+                            url: 'https://www.cmb.be/',
+                            label: 'www.cmb.be'
+                        }
+                    }
+                ],
+                customSignature: false,
+                brandSelected: {},
+                name: 'Jane Doe',
+                job: 'Marketing & Communications Assistant',
+                proEmail: 'jane.doe@cmb.be',
+                email: 'jane.doe@cmb.be',
+                mobile: '489 17 37 58',
+                phone: '3 247 59 11',
+                signatureImage: 'cmb',
+                signatureImageWidth:302,
+                signatureImageHeight: 100,
+                borderColor: '#ed1c24',
+                signatureWidth: 320,
+                signatureWidthOverride: 400,
+                imgBasePath: 'https://signature.cmb.be',
+                countrycodes: [
+                    {
+                        code: '+355',
+                        label: 'Albanië'
+                    },
+                    {
+                        code: '+376',
+                        label: 'Andorra'
+                    },
+                    {
+                        code: '+32',
+                        label: 'België'
+                    },
+                    {
+                        code: '+387',
+                        label: 'Bosnië-Herzegovina'
+                    },
+                    {
+                        code: '+359',
+                        label: 'Bulgarije'
+                    },
+                    {
+                        code: '+45',
+                        label: 'Denemarken'
+                    },
+                    {
+                        code: '+49',
+                        label: 'Duitsland'
+                    },
+                    {
+                        code: '+372',
+                        label: 'Estland'
+                    },
+                    {
+                        code: '+298',
+                        label: 'Faeröer'
+                    },
+                    {
+                        code: '+358',
+                        label: 'Finland'
+                    },
+                    {
+                        code: '+33',
+                        label: 'Frankrijk'
+                    },
+                    {
+                        code: '+350',
+                        label: 'Gibraltar'
+                    },
+                    {
+                        code: '+30',
+                        label: 'Griekenland'
+                    },
+                    {
+                        code: '+299',
+                        label: 'Groenland'
+                    },
+                    {
+                        code: '+44',
+                        label: 'Guernsey'
+                    },
+                    {
+                        code: '+379',
+                        label: 'Vaticaanstad'
+                    },
+                    {
+                        code: '+36',
+                        label: 'Hongarije'
+                    },
+                    {
+                        code: '+353',
+                        label: 'Ierland'
+                    },
+                    {
+                        code: '+354',
+                        label: 'Ijsland'
+                    },
+                    {
+                        code: '+44',
+                        label: 'Isle of Man'
+                    },
+                    {
+                        code: '+39',
+                        label: 'Italië'
+                    },
+                    {
+                        code: '+47',
+                        label: 'Jan Mayen'
+                    },
+                    {
+                        code: '+383',
+                        label: 'Kosovo'
+                    },
+                    {
+                        code: '+385',
+                        label: 'Kroatië'
+                    },
+                    {
+                        code: '+371',
+                        label: 'Letland'
+                    },
+                    {
+                        code: '+423',
+                        label: 'Liechtenstein'
+                    },
+                    {
+                        code: '+370',
+                        label: 'Litouwen'
+                    },
+                    {
+                        code: '+352',
+                        label: 'Luxemburg'
+                    },
+                    {
+                        code: '+389',
+                        label: 'Macedonië'
+                    },
+                    {
+                        code: '+356',
+                        label: 'Malta'
+                    },
+                    {
+                        code: '+373',
+                        label: 'Moldavië'
+                    },
+                    {
+                        code: '+377',
+                        label: 'Monaco'
+                    },
+                    {
+                        code: '+382',
+                        label: 'Montenegro'
+                    },
+                    {
+                        code: '+31',
+                        label: 'Nederland'
+                    },
+                    {
+                        code: '+47',
+                        label: 'Noorwegen'
+                    },
+                    {
+                        code: '+380',
+                        label: 'Oekraïne'
+                    },
+                    {
+                        code: '+43',
+                        label: 'Oostenrijk'
+                    },
+                    {
+                        code: '+48',
+                        label: 'Polen'
+                    },
+                    {
+                        code: '+351',
+                        label: 'Portugal'
+                    },
+                    {
+                        code: '+40',
+                        label: 'Roemenië'
+                    },
+                    {
+                        code: '+7',
+                        label: 'Rusland'
+                    },
+                    {
+                        code: '+378',
+                        label: 'San Marino'
+                    },
+                    {
+                        code: '+381',
+                        label: 'Servië'
+                    },
+                    {
+                        code: '+386',
+                        label: 'Slovenië'
+                    },
+                    {
+                        code: '+421',
+                        label: 'Slowakije'
+                    },
+                    {
+                        code: '+34',
+                        label: 'Spanje'
+                    },
+                    {
+                        code: '+47',
+                        label: 'Svalbard'
+                    },
+                    {
+                        code: '+420',
+                        label: 'Tsjechische Republiek'
+                    },
+                    {
+                        code: '+44',
+                        label: 'Verenigd Koninkrijk'
+                    },
+                    {
+                        code: '+375',
+                        label: 'Wit-Rusland'
+                    },
+                    {
+                        code: '+46',
+                        label: 'Zweden'
+                    },
+                    {
+                        code: '+41',
+                        label: 'Zwitserland'
+                    },
+                ],
+                countrycodeSelected: {}
+            },
+            created: function() {
+                this.brandSelected = this.brands[0];
+                
+                let countrycodeBelgium = this.countrycodes.filter(function(el) {
+                    return el.label === 'België';
+                });
+                
+                this.countrycodeSelected = countrycodeBelgium[0];
+            },
+            computed: {
+                strMobile: function() {
+                    return this.countrycodeSelected.code + ' ' + this.mobile
+                },
+
+                telMobile: function() {
+                    return this.countrycodeSelected.code + this.mobile.replace(/\s+/g, '');
+                },
+
+                strPhone: function() {
+                    return this.countrycodeSelected.code + ' ' + this.phone
+                },
+
+                telPhone: function() {
+                    return this.countrycodeSelected.code + this.phone.replace(/\s+/g, '');
+                },
+
+                tableWidth: function() {
+                    return (p_width) => Math.ceil(this.signatureWidth + p_width);
+                },
+
+                strSignature: function() {
+
+                    let imgPath, imgWidth, imgHeight, tableWidth;
+                    //let customSignatureBlock = document.querySelector('.custom-sig');
+
+                    //console.info(customSignatureBlock);
+
+                    if(this.customSignature){
+                        imgWidth = parseInt(this.signatureImageWidth);
+                        imgHeight = parseInt(this.signatureImageHeight);
+                        imgPath = this.imgBasePath + `/` + this.signatureImage;
+                        tableWidth = this.tableWidth(this.signatureWidthOverride/4*3)
+                        //customSignatureBlock.classList.remove('disabled');
+                    } else {
+                        imgWidth = this.brandSelected.width/3*2;
+                        imgHeight = this.brandSelected.height/3*2;
+                        imgPath = this.imgBasePath + `` + this.brandSelected.url;
+                        tabelWidth = this.tableWidth(this.brandSelected.width/4*3)
+                        //customSignatureBlock.classList.add('disabled');
+                    }
+
+                    return `<table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="` + tableWidth + `" style="width:` + tableWidth  + `px;">
+                            <tr>
+                                <td align="center" valign="top">
+                                    <table cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="` + tableWidth  + `" style="width:` + tableWidth  + `px;">
+                                        <tr>
+                                            <td style="padding:0 20px 0 0; font-size: 14px; border-right: 2px solid ` + ( this.brandSelected.borderColor ? this.brandSelected.borderColor : this.borderColor ) + `">
+                                                <p style="margin: 0 0 8px 0; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; color: #223670;">
+                                                    <span style="font-size: 16px; font-weight: 600;font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; color: #223670;"><b>` + this.name + `</b></span><br>
+                                                    ` + (this.job != '' ?  '<span style="font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; color: #223670;font-size: 14px;">' + this.job + '</span>' : '') +  `
+                                                </p>
+                                                <table border="0" cellpadding="0" cellspacing="0" style="margin: 8px 0 0 0; padding: 0; color: #223670; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; font-size:12px;"">
+                                                    ` + (this.phone != '' ? '<tr><td width="24" style="margin:0 0 0 0; padding: 0 0 0 0;">T.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="tel:' + this.telPhone + '" title="Call" style="text-decoration: none !important; text-decoration: none; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; color: #223670; font-size: 12px;"><span style="text-decoration: none; text-decoration: none !important;">' + this.strPhone + '</span></a></td></tr>' : '') +  `
+                                                    ` + (this.mobile != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">M.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="tel:' + this.telMobile + '" title="Call" style="text-decoration: none !important; text-decoration: none; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; color: #223670;" font-size: 12px;><span style="text-decoration: none; text-decoration: none !important;">' + this.strMobile + '</span></a></td></tr>' : '') +  `       
+                                                    ` + (this.proEmail != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.proEmail + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.proEmail + '</span></a></td></tr>' : '') +  `
+                                                    ` + (this.email != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.email + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.email + '</span></a></td></tr>' : '') +  `
+                                                    <tr><td colspan="2">
+                                                    De Gerlachekaai 20, 2000 Antwerpen<br>
+                                                    <a href="` + this.brandSelected.website.url + `" target="_blank" title="` + this.brandSelected.label + ` website"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif;  font-size: 12px;">` + this.brandSelected.website.label + `</span></a><br>
+                                                    ` + (this.brandSelected.brandLabel != 'CMB' ? this.brandSelected.brandLabel + ' part of CMB<br>' : '') +  `
+                                                    </td></tr>
+                                                </table>
+                                            </td>
+                                        
+                                            <td style="padding: 0 0 0 20px" width="` + imgWidth + `" valign="top">
+                                                <p style="margin: 16px 0 0 0"><a href="` + this.brandSelected.website.url + `" target="_blank" title="` + this.brandSelected.label + ` website"><img src="` + imgPath + `" alt="` + this.brandSelected.label + `" width="` + imgWidth + `" height="` + imgHeight + `" /></a></p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px 0; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; font-size: 9px; color: #223670;"> 
+                                    <p style="margin: 0 0 6px 0;">As of 2020 we offset our carbon and by 2050 we will be carbon-zero.</p>
+                                    <p style="margin:0;">Your privacy is important to us! <br>Want to read more? Take a look at our privacy policy on <a href="https://www.cmb.be/en/privacy-policy">www.cmb.be/en/privacy-policy</a></p>
+                                </td>
+                            </tr>
+                        </table>`
+                }
+            },
+            methods: {
+                
+                async copySignature() {
+
+                    let str = this.strSignature;
+
+                    let iframe = document.getElementById('preview');
+                    iframe.srcdoc = str;
+
+                    document.addEventListener('copy', handler, true);
+
+                    function handler (event){
+                        event.clipboardData.setData('text/html', str);
+                        event.preventDefault();
+                        document.removeEventListener('copy', handler, true);
+                        
+                        alert('Signature had been copied to clipboard');
+
+                    }
+
+                    let result;
+                    try {
+                        // execute copy command
+                        document.execCommand('copy');
+                        result = 'Copied';
+                    } catch (err) {
+                        console.log(err);
+                        result = 'Unable to copy';
+                    }
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html> 
