@@ -11,6 +11,10 @@
         .disabled{
             opacity: .3;
         }
+        .sticky {
+            position: sticky;
+            top: 1rem;
+        }
     </style>
 </head>
 
@@ -44,12 +48,12 @@
                                 </div>
     
                                 <div class="form-group">
-                                    <label for="email">Professional E-mail Adress <small>(optional)</small></label>
+                                    <label for="email">Professional E-mail Address <small>(optional)</small></label>
                                     <input type="text" name="email" class="form-control" id="email" v-model="proEmail">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">General E-mail Adress <small>(optional)</small></label>
+                                    <label for="email">General E-mail Address <small>(optional)</small></label>
                                     <input type="text" name="email" class="form-control" id="email" v-model="email">
                                 </div>
 
@@ -80,6 +84,11 @@
                                         </div>
                                         <input type="text" name="telefoon" class="form-control" id="telefoon" v-model="phone">
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Address <small>(optional)</small></label>
+                                    <input type="text" name="email" class="form-control" id="email" v-model="address">
                                 </div>
 
                                 <div class="form-group">
@@ -143,15 +152,17 @@
                 </div>
 
                 <div class="col-sm">
-                    <h4 class="mb-4">Signature</h4>
-                    <div class="mt-5" id="signature" v-html="strSignature" style="display:none;"></div>
+                    <div class="sticky">
+                        <h4 class="mb-4">Signature</h4>
+                        <div class="mt-5" id="signature" v-html="strSignature" style="display:none;"></div>
 
-                    <iframe id="preview" class="card" style="width:600px; height: 400px; margin-bottom: 1rem;"></iframe>
-                    <ol>
-                        <li>Click on the signature</li>
-                        <li><strong>Select all</strong> (CTRL/CMD+A) and <strong>copy</strong> (CTRL/CMD+C)</li>
-                        <li>Then <strong>paste</strong> CTRL/CMD+V the signature in outlook.</li>
-                    </ol>
+                        <iframe id="preview" class="card" style="width:600px; height: 400px; margin-bottom: 1rem;"></iframe>
+                        <ol>
+                            <li>Click on the signature</li>
+                            <li><strong>Select all</strong> (CTRL/CMD+A) and <strong>copy</strong> (CTRL/CMD+C)</li>
+                            <li>Then <strong>paste</strong> CTRL/CMD+V the signature in outlook.</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
@@ -253,6 +264,7 @@
                 email: 'jane.doe@cmb.be',
                 mobile: '489 17 37 58',
                 phone: '3 247 59 11',
+                address: 'De Gerlachekaai 20, 2000 Antwerpen',
                 signatureImage: 'cmb',
                 signatureImageWidth:302,
                 signatureImageHeight: 100,
@@ -541,7 +553,7 @@
                                                     ` + (this.proEmail != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.proEmail + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.proEmail + '</span></a></td></tr>' : '') +  `
                                                     ` + (this.email != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.email + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.email + '</span></a></td></tr>' : '') +  `
                                                     <tr><td colspan="2">
-                                                    De Gerlachekaai 20, 2000 Antwerpen<br>
+                                                    ` + ( this.address != '' ? '' + this.address + '<br>' : '' ) + `
                                                     <a href="` + this.brandSelected.website.url + `" target="_blank" title="` + this.brandSelected.label + ` website"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif;  font-size: 12px;">` + this.brandSelected.website.label + `</span></a><br>
                                                     ` + (this.brandSelected.brandLabel != 'CMB' ? this.brandSelected.brandLabel + ' part of CMB<br>' : '') +  `
                                                     </td></tr>
@@ -556,7 +568,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 20px 0; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; font-size: 9px; color: #223670;"> 
+                                <td style="padding: 20px 0 0 0; margin: 0; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; font-size: 9px; color: #223670;"> 
                                     <p style="margin: 0 0 6px 0;">As of 2020 we offset our carbon and by 2050 we will be carbon-zero.</p>
                                     <p style="margin:0;">Your privacy is important to us! <br>Want to read more? Take a look at our privacy policy on <a href="https://www.cmb.be/en/privacy-policy">www.cmb.be/en/privacy-policy</a></p>
                                 </td>
