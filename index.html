@@ -254,6 +254,17 @@
                             url: 'https://www.cmb.be/',
                             label: 'www.cmb.be'
                         }
+                    },
+                    {
+                        url: '/wcw',
+                        width: 287,
+                        height: 204,
+                        brandLabel: 'WCW',
+                        label: 'Wildcat Workboats', 
+                        website: {
+                            url: 'https://www.cmb.be/',
+                            label: 'www.cmb.be'
+                        }
                     }
                 ],
                 customSignature: false,
@@ -569,7 +580,7 @@
                             </tr>
                             <tr>
                                 <td style="padding: 20px 0 0 0; margin: 0; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; font-size: 9px; color: #223670;"> 
-                                    <p style="margin: 0 0 6px 0;">As of 2020 we offset our carbon and by 2050 we will be carbon-zero.</p>
+                                    ` + (this.brandSelected.brandLabel != 'WCW' ? '<p style="margin: 0 0 6px 0;">As of 2020 we offset our carbon and by 2050 we will be carbon-zero.</p>' : '' ) + `
                                     <p style="margin:0;">Your privacy is important to us! <br>Want to read more? Take a look at our privacy policy on <a href="https://www.cmb.be/en/privacy-policy">www.cmb.be/en/privacy-policy</a></p>
                                 </td>
                             </tr>
