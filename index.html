@@ -30,7 +30,7 @@
 
                                 <div class="form-group">
                                     <label for="logo">Logo</label>
-                                    <select class="form-control" id="logo" v-model="brandSelected">
+                                    <select class="form-control" id="logo" v-model="brandSelected" @change="onChange($event)">
                                         <option v-for="brand in brands" :value="brand">
                                             {{brand.label}}
                                         </option>
@@ -48,13 +48,13 @@
                                 </div>
     
                                 <div class="form-group">
-                                    <label for="email">Professional E-mail Address <small>(optional)</small></label>
-                                    <input type="text" name="email" class="form-control" id="email" v-model="proEmail">
+                                    <label for="proEmail">Professional E-mail Address <small>(optional)</small></label>
+                                    <input type="text" name="proEmail" class="form-control" id="proEmail" v-model="brandSelected.proEmail">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">General E-mail Address <small>(optional)</small></label>
-                                    <input type="text" name="email" class="form-control" id="email" v-model="email">
+                                    <input type="text" name="email" class="form-control" id="email" v-model="brandSelected.email">
                                 </div>
 
                                 <div class="form-group">
@@ -67,41 +67,43 @@
                                 </div>
     
                                 <div class="form-group">
-                                    <label for="mobiel">Mobile <small>(optional)</small></label>
+                                    <label for="mobile">Mobile <small>(optional)</small></label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">{{countrycodeSelected.code}}</span>
                                         </div>
-                                        <input type="text" name="mobiel" class="form-control" id="mobiel" v-model="mobile">
+                                        <input type="text" name="mobile" class="form-control" id="mobile" v-model="mobile">
                                     </div>
                                 </div>
     
                                 <div class="form-group">
-                                    <label for="telefoon">Phone <small>(optional)</small></label>
+                                    <label for="phone">Phone <small>(optional)</small></label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">{{countrycodeSelected.code}}</span>
                                         </div>
-                                        <input type="text" name="telefoon" class="form-control" id="telefoon" v-model="phone">
+                                        <input type="text" name="phone" class="form-control" id="phone" v-model="phone">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Address <small>(optional)</small></label>
-                                    <input type="text" name="email" class="form-control" id="email" v-model="address">
+                                    <label for="address">Address <small>(optional)</small></label>
+                                    <div class="input-group">
+                                        <input type="text" name="address" class="form-control" id="address" v-model="brandSelected.address">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="website-url">Website URL</label>
                                     <div class="input-group">
-                                        <input type="text" name="mobiel" class="form-control" id="website-url" v-model="brandSelected.website.url">
+                                        <input type="text" name="website-url" class="form-control" id="website-url" v-model="brandSelected.website.url">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="website-label">Website Label</label>
                                     <div class="input-group">
-                                        <input type="text" name="mobiel" class="form-control" id="website-label" v-model="brandSelected.website.label">
+                                        <input type="text" name="website-url" class="form-control" id="website-label" v-model="brandSelected.website.label">
                                     </div>
                                 </div>
 
@@ -182,6 +184,9 @@
                         height: 204,
                         brandLabel: 'CMB',
                         label: 'CMB',
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
                             url: 'https://www.cmb.be/',
                             label: 'www.cmb.be'
@@ -194,6 +199,9 @@
                         height: 204,
                         brandLabel: 'MCA',
                         label: 'MCA',
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
                             url: 'https://www.maritimecampusantwerp.com',
                             label: 'www.maritimecampusantwerp.com'
@@ -206,6 +214,9 @@
                         height: 204,
                         brandLabel: 'CMB.TECH',
                         label: 'CMB.TECH',
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
                             url: 'https://www.cmb.tech',
                             label: 'www.cmb.tech'
@@ -217,6 +228,9 @@
                         height: 204,
                         brandLabel: 'Delphis',
                         label: 'Delphis',
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
                             url: 'https://www.cmb.be/',
                             label: 'www.cmb.be'
@@ -227,7 +241,10 @@
                         width: 242,
                         height: 204,
                         brandLabel: 'Bocimar',
-                        label: 'Bocimar', 
+                        label: 'Bocimar',
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
                             url: 'https://www.cmb.be/',
                             label: 'www.cmb.be'
@@ -250,6 +267,9 @@
                         height: 204,
                         brandLabel: 'CMB',
                         label: 'CMB Christmas', 
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
                             url: 'https://www.cmb.be/',
                             label: 'www.cmb.be'
@@ -259,23 +279,25 @@
                         url: '/wcw',
                         width: 287,
                         height: 204,
-                        brandLabel: 'WCW',
-                        label: 'Wildcat Workboats', 
+                        brandLabel: 'Windcat Workboats',
+                        label: 'Windcat Workboats',
+                        proEmail: 'jane.doe@windcatworkboats.com',
+                        email: 'jane.doe@windcatworkboats.com',
+                        address: 'Trawlerkade 106, 1976 CC IJmuiden, The Netherlands',
                         website: {
-                            url: 'https://www.cmb.be/',
-                            label: 'www.cmb.be'
-                        }
+                            url: 'https://www.windcatworkboats.com/',
+                            label: 'www.windcatworkboats.com'
+                        },
+                        borderColor: '#0093D0',
+                        country: 'Nederland',
                     }
                 ],
                 customSignature: false,
                 brandSelected: {},
                 name: 'Jane Doe',
                 job: 'Marketing & Communications Assistant',
-                proEmail: 'jane.doe@cmb.be',
-                email: 'jane.doe@cmb.be',
                 mobile: '489 17 37 58',
                 phone: '3 247 59 11',
-                address: 'De Gerlachekaai 20, 2000 Antwerpen',
                 signatureImage: 'cmb',
                 signatureImageWidth:302,
                 signatureImageHeight: 100,
@@ -501,7 +523,7 @@
                 let countrycodeBelgium = this.countrycodes.filter(function(el) {
                     return el.label === 'België';
                 });
-                
+
                 this.countrycodeSelected = countrycodeBelgium[0];
             },
             computed: {
@@ -530,7 +552,6 @@
                     let imgPath, imgWidth, imgHeight, tableWidth;
                     //let customSignatureBlock = document.querySelector('.custom-sig');
 
-                    //console.info(customSignatureBlock);
 
                     if(this.customSignature){
                         imgWidth = parseInt(this.signatureImageWidth);
@@ -546,8 +567,6 @@
                         //customSignatureBlock.classList.add('disabled');
                     }
 
-                    console.info(tableWidth);
-
                     return `<table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="` + tableWidth + `" style="width:` + tableWidth  + `px;">
                             <tr>
                                 <td align="center" valign="top">
@@ -561,10 +580,10 @@
                                                 <table border="0" cellpadding="0" cellspacing="0" style="margin: 8px 0 0 0; padding: 0; color: #223670; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; font-size:12px;"">
                                                     ` + (this.phone != '' ? '<tr><td width="24" style="margin:0 0 0 0; padding: 0 0 0 0;">T.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="tel:' + this.telPhone + '" title="Call" style="text-decoration: none !important; text-decoration: none; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; color: #223670; font-size: 12px;"><span style="text-decoration: none; text-decoration: none !important;">' + this.strPhone + '</span></a></td></tr>' : '') +  `
                                                     ` + (this.mobile != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">M.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="tel:' + this.telMobile + '" title="Call" style="text-decoration: none !important; text-decoration: none; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; color: #223670;" font-size: 12px;><span style="text-decoration: none; text-decoration: none !important;">' + this.strMobile + '</span></a></td></tr>' : '') +  `       
-                                                    ` + (this.proEmail != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.proEmail + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.proEmail + '</span></a></td></tr>' : '') +  `
-                                                    ` + (this.email != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.email + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.email + '</span></a></td></tr>' : '') +  `
+                                                    ` + (this.brandSelected.proEmail != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.brandSelected.proEmail + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.brandSelected.proEmail + '</span></a></td></tr>' : '') +  `
+                                                    ` + (this.brandSelected.email != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.brandSelected.email + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.brandSelected.email + '</span></a></td></tr>' : '') +  `
                                                     <tr><td colspan="2">
-                                                    ` + ( this.address != '' ? '' + this.address + '<br>' : '' ) + `
+                                                    ` + ( this.brandSelected.address != '' ? '' + this.brandSelected.address + '<br>' : '' ) + `
                                                     <a href="` + this.brandSelected.website.url + `" target="_blank" title="` + this.brandSelected.label + ` website"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif;  font-size: 12px;">` + this.brandSelected.website.label + `</span></a><br>
                                                     ` + (this.brandSelected.brandLabel != 'CMB' ? this.brandSelected.brandLabel + ' part of CMB<br>' : '') +  `
                                                     </td></tr>
@@ -580,7 +599,7 @@
                             </tr>
                             <tr>
                                 <td style="padding: 20px 0 0 0; margin: 0; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; font-size: 9px; color: #223670;"> 
-                                    ` + (this.brandSelected.brandLabel != 'WCW' ? '<p style="margin: 0 0 6px 0;">As of 2020 we offset our carbon and by 2050 we will be carbon-zero.</p>' : '' ) + `
+                                    ` + (this.brandSelected.label != 'Windcat Workboats' ? '<p style="margin: 0 0 6px 0;">As of 2020 we offset our carbon and by 2050 we will be carbon-zero.</p>' : '' ) + `
                                     <p style="margin:0;">Your privacy is important to us! <br>Want to read more? Take a look at our privacy policy on <a href="https://www.cmb.be/en/privacy-policy">www.cmb.be/en/privacy-policy</a></p>
                                 </td>
                             </tr>
@@ -588,6 +607,10 @@
                 }
             },
             methods: {
+                
+                onChange (event) {
+                    console.info('change', event);
+                },
 
                 async copySignature() {
 
@@ -613,7 +636,7 @@
                         document.execCommand('copy');
                         result = 'Copied';
                     } catch (err) {
-                        console.log(err);
+                        window.console && console.log(err);
                         result = 'Unable to copy';
                     }
                     
