@@ -94,6 +94,13 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="address2">Second address<small>(optional)</small></label>
+                                    <div class="input-group">
+                                        <input type="text" name="address2" class="form-control" id="address2" v-model="address2">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="website-url">Website URL</label>
                                     <div class="input-group">
                                         <input type="text" name="website-url" class="form-control" id="website-url" v-model="brandSelected.website.url">
@@ -305,6 +312,7 @@
                 signatureWidth: 320,
                 signatureWidthOverride: 400,
                 imgBasePath: 'https://signature.cmb.be',
+                address2: '',
                 countrycodes: [
                     {
                         code: '+355',
@@ -584,6 +592,7 @@
                                                     ` + (this.brandSelected.email != '' ? '<tr><td style="margin:0 0 0 0; padding: 0 0 0 0;">E.</td><td style="margin:0 0 0 0; padding: 0 0 0 0;"><a href="mailto:' + this.brandSelected.email + '" title="Mail"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif; font-size: 12px;">' + this.brandSelected.email + '</span></a></td></tr>' : '') +  `
                                                     <tr><td colspan="2">
                                                     ` + ( this.brandSelected.address != '' ? '' + this.brandSelected.address + '<br>' : '' ) + `
+                                                    ` + ( this.address2 != '' ? '' + this.address2 + '<br>' : '' ) + `
                                                     <a href="` + this.brandSelected.website.url + `" target="_blank" title="` + this.brandSelected.label + ` website"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif;  font-size: 12px;">` + this.brandSelected.website.label + `</span></a><br>
                                                     ` + (this.brandSelected.brandLabel != 'CMB' ? this.brandSelected.brandLabel + ' part of CMB<br>' : '') +  `
                                                     </td></tr>
