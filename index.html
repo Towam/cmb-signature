@@ -202,8 +202,8 @@
                     },
                     {
                         url: '/mca2',
-                        width: 400,
-                        height: 204,
+                        width: 243*2,
+                        height: 200,
                         brandLabel: 'MCA',
                         label: 'MCA',
                         proEmail: 'jane.doe@cmb.be',
@@ -213,7 +213,52 @@
                             url: 'https://www.maritimecampusantwerp.com',
                             label: 'www.maritimecampusantwerp.com'
                         },
-                        borderColor: '#8ac7cb'
+                        borderColor: '#001d85'
+                    },
+                    {
+                        url: '/mcalabs',
+                        width: 143*2,
+                        height: 200,
+                        brandLabel: 'MCA Labs',
+                        label: 'MCA Labs',
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
+                        website: {
+                            url: 'https://www.maritimecampusantwerp.com',
+                            label: 'www.maritimecampusantwerp.com'
+                        },
+                        borderColor: '#001d85'
+                    },
+                    {
+                        url: '/mcafacilities',
+                        width: 232*2,
+                        height: 200,
+                        brandLabel: 'MCA Facilities',
+                        label: 'MCA Facilities',
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
+                        website: {
+                            url: 'https://www.maritimecampusantwerp.com',
+                            label: 'www.maritimecampusantwerp.com'
+                        },
+                        borderColor: '#001d85'
+                    },
+                    {
+                        url: '/mcacommunity',
+                        width: 254*2,
+                        height: 200,
+                        brandLabel: 'MCA Community',
+                        label: 'MCA Community',
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
+                        website: {
+                            url: 'https://www.maritimecampusantwerp.com',
+                            label: 'www.maritimecampusantwerp.com'
+                        },
+                        borderColor: '#001d85'
                     },
                     {
                         url: '/cmb%20tech',
@@ -557,7 +602,9 @@
 
                 strSignature: function() {
 
+                    // rewrite path on local machine (path fixed )
                     let imgPath, imgWidth, imgHeight, tableWidth;
+                    this.imgBasePath = window.location.host == 'cmb.test' ? 'http://cmb.test/signature/img' : this.imgBasePath;
                     //let customSignatureBlock = document.querySelector('.custom-sig');
 
 
@@ -573,6 +620,12 @@
                         imgPath = this.imgBasePath + `` + this.brandSelected.url;
                         tableWidth = this.calcTableWidth(this.brandSelected.width/4*3)
                         //customSignatureBlock.classList.add('disabled');
+                    }
+
+                    // add file extension on local environment (ext. fixed)
+                    if(window.location.host == 'cmb.test') {
+                        imgPath += '.jpg';
+                        console.info('add .jpg');
                     }
 
                     return `<table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="` + tableWidth + `" style="width:` + tableWidth  + `px;">
