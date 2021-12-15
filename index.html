@@ -308,6 +308,9 @@
                         height: 204,
                         brandLabel: 'Bochem',
                         label: 'Bochem', 
+                        proEmail: 'jane.doe@cmb.be',
+                        email: 'jane.doe@cmb.be',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
                             url: 'https://www.cmb.be/',
                             label: 'www.cmb.be'
@@ -325,6 +328,20 @@
                         website: {
                             url: 'https://www.cmb.be/',
                             label: 'www.cmb.be'
+                        }
+                    },
+                    {
+                        url: '/Christmas',
+                        width: 287,
+                        height: 204,
+                        brandLabel: 'CMB.TECH',
+                        label: 'CMB.TECH Christmas', 
+                        proEmail: 'jane.doe@cmb.tech',
+                        email: 'jane.doe@cmb.tech',
+                        address: 'De Gerlachekaai 20, 2000 Antwerpen',
+                        website: {
+                            url: 'https://www.cmb.tech',
+                            label: 'www.cmb.tech'
                         }
                     },
                     {
@@ -625,7 +642,6 @@
                     // add file extension on local environment (ext. fixed)
                     if(window.location.host == 'cmb.test') {
                         imgPath += '.jpg';
-                        console.info('add .jpg');
                     }
 
                     return `<table border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0" width="` + tableWidth + `" style="width:` + tableWidth  + `px;">
@@ -671,7 +687,7 @@
             methods: {
                 
                 onChange (event) {
-                    console.info('change', event);
+                    window.console && console.info('change', event);
                 },
 
                 async copySignature() {
