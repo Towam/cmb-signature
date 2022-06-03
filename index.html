@@ -210,8 +210,8 @@
                         email: 'jane.doe@cmb.be',
                         address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
-                            url: 'https://www.maritimecampusantwerp.com',
-                            label: 'www.maritimecampusantwerp.com'
+                            url: 'https://www.mca.be',
+                            label: 'www.mca.be'
                         },
                         borderColor: '#84C4C0'
                     },
@@ -225,8 +225,8 @@
                         email: 'jane.doe@cmb.be',
                         address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
-                            url: 'https://www.maritimecampusantwerp.com',
-                            label: 'www.maritimecampusantwerp.com'
+                            url: 'https://www.mca.be',
+                            label: 'www.mca.be'
                         },
                         borderColor: '#84C4C0'
                     },
@@ -240,8 +240,8 @@
                         email: 'jane.doe@cmb.be',
                         address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
-                            url: 'https://www.maritimecampusantwerp.com',
-                            label: 'www.maritimecampusantwerp.com'
+                            url: 'https://www.mca.be',
+                            label: 'www.mca.be'
                         },
                         borderColor: '#84C4C0'
                     },
@@ -255,8 +255,8 @@
                         email: 'jane.doe@cmb.be',
                         address: 'De Gerlachekaai 20, 2000 Antwerpen',
                         website: {
-                            url: 'https://www.maritimecampusantwerp.com',
-                            label: 'www.maritimecampusantwerp.com'
+                            url: 'https://www.mca.be',
+                            label: 'www.mca.be'
                         },
                         borderColor: '#84C4C0'
                     },
@@ -331,7 +331,7 @@
                         }
                     },
                     {
-                        url: '/Christmas-cmb',
+                        url: '/Christmas-cmb-tech',
                         width: 287,
                         height: 204,
                         brandLabel: 'CMB.TECH',
@@ -663,7 +663,7 @@
                                                     ` + ( this.brandSelected.address != '' ? '' + this.brandSelected.address + '<br>' : '' ) + `
                                                     ` + ( this.address2 != '' ? '' + this.address2 + '<br>' : '' ) + `
                                                     <a href="` + this.brandSelected.website.url + `" target="_blank" title="` + this.brandSelected.label + ` website"><span style="text-decoration: none; text-decoration: none !important; font-family: \'Open Sans\', \'Source Sans Pro\', Arial, sans-serif;  font-size: 12px;">` + this.brandSelected.website.label + `</span></a><br>
-                                                    ` + (this.brandSelected.brandLabel != 'CMB' ? this.brandSelected.brandLabel + ' part of CMB<br>' : '') +  `
+                                                    ` + ((this.brandSelected.brandLabel != 'CMB' && this.brandSelected.brandLabel.indexOf('MCA') == -1 ) ? this.brandSelected.brandLabel + ' part of CMB<br>' : '') +  `
                                                     </td></tr>
                                                 </table>
                                             </td>
@@ -678,8 +678,9 @@
                             <tr>
                                 <td style="padding: 20px 0 0 0; margin: 0; font-family: 'Open Sans', 'Source Sans Pro', Arial, sans-serif; font-size: 9px; color: #223670;"> 
                                     ` + (this.brandSelected.label != 'Windcat Workboats' ? '<p style="margin: 0 0 6px 0;">As of 2020 we offset our carbon and by 2050 we will be carbon-zero.</p>' : '' ) + `
-                                    <p style="margin:0;">Your privacy is important to us! <br>Want to read more? Take a look at our privacy policy on <a href="https://www.cmb.be/en/privacy-policy">www.cmb.be/en/privacy-policy</a></p>
+                                    ` + (this.brandSelected.label.indexOf('MCA') == -1 ? '<p style="margin:0;">Your privacy is important to us! <br>Want to read more? Take a look at our privacy policy on <a href="https://www.cmb.be/en/privacy-policy" target="_blank">www.cmb.be/en/privacy-policy</a></p>' : '<p style="margin:0;">Your privacy is important to us! <br>Want to read more? Take a look at our privacy policy on <a href="https://www.mca.be/privacy-policy" target="_blank">www.mca.be/privacy-policy</a></p>' ) + `
                                 </td>
+                                https://mca.be/privacy-policy
                             </tr>
                         </table>`
                 }
